@@ -69,6 +69,7 @@ $(echo "$response" | jq -r '.data.question.codeSnippets[] | select(.langSlug == 
 folder_name="$problem_number-$problem_title"
 
 # Create the folder
+cd solutions
 mkdir -p "$problem_number-$problem_title"
 
 # Fall back to a basic C++ template if the skeleton isn't found
@@ -108,6 +109,8 @@ fi
 # Create the main.cpp file with the extracted code
 solution_file="$folder_name/main.cpp"
 echo "$skeleton_code" > "$solution_file"
+
+Code ./$solution_file
 
 # Inform the user
 echo "Created folder: $folder_name"
